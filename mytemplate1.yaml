@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Template
+metadata:
+   name: example
+   annotations:
+      description: Demo of template
+      iconClass: "icon-redis"
+      tags: examples
+objects:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+      name: myexampleapp
+  spec:
+   containers:
+   - env:
+     - name: MYAPP_CONFIG
+       value: ${MYPARAMETER}
+     image: quay.io/anandpavithran/infosys:1.0
+     name: myexampleapp
+     ports:
+     - containerPort: 8080
+       protocol: TCP
+parameters:
+- description: my APP CONFIG Data
+  name: MYPARAMETER
+  required: true
+  value: hello
+labels:
+   mylabel: myexampleapp
+
